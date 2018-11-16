@@ -11,7 +11,7 @@ const { MongoClient } = require('mongodb');
         console.log('Connected to server');
 
         const db = client.db(dbName);
-        const disks = getDisks();
+        const disks = await getDisks();
         const response = await db.collection('disks').insertMany(disks);
         console.log(response)
     } catch (err) {
@@ -40,8 +40,4 @@ const getDisks = () => {
         )
       }
     ) 
-    
   }
-  myFunction(getDisks, function(returnValue) {
-    // use the return value here instead of like a regular (non-evented) return value
-  });
