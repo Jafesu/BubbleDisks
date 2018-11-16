@@ -1,11 +1,28 @@
 const njds = require('nodejs-disks');
-const mongo = require('mongodb');
+const { MongoClient } = require('mongodb');
 
-const getDisks = () => {
-    let disks =[];
+
+(async function mongo() {
+    let client;
     const url = 'mongodb://localhost:27017';
     const dbName = 'diskInfo';
+    try {
+        client = await MongoClient.connect(url);
+        console.log('Connected to server');
 
+        const db = client.db(dbName);
+        const disks = getDisks();
+        const response = await db.collection('disks').insertMany(disks);
+        console.log(response)
+    } catch (err) {
+        console.log(err.stack);
+    }
+
+    client.close();
+}());
+
+const getDisks = () => {
+    
     njds.drives(
       function (err, drives) {
         njds.drivesDetail(
@@ -17,12 +34,14 @@ const getDisks = () => {
                 disks.push(disk);
               }
             }
+            return disks;
             
           }
         )
       }
     ) 
-    return disks; 
+    
   }
-
-
+  myFunction(getDisks, function(returnValue) {
+    // use the return value here instead of like a regular (non-evented) return value
+  });
