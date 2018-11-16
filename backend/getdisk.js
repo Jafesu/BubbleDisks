@@ -34,6 +34,7 @@ const getDisks = () => {
                 }
             
                 client.close();
+                
             }());
             
           }
@@ -42,4 +43,27 @@ const getDisks = () => {
     ) 
   }
 
+  const listDisks = () => {
+    (async function mongo() {
+        let client;
+        const url = 'mongodb://localhost:27017';
+        const dbName = 'diskInfo';
+        try {
+            client = await MongoClient.connect(url);
+            console.log('Connected to server');
+    
+            const db = client.db(dbName);
+            const col = await db.collection('disks');
+            const response = await col.find().toArray();
+            console.log(response)
+        } catch (err) {
+            console.log(err.stack);
+        }
+    
+        client.close();
+    }());
+  }
   getDisks();
+  listDisks();
+  
+  
