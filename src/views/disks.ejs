@@ -102,7 +102,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1><%= header %> <small><%= sub %></small></h1>
-                    
+                    <% console.log(diskID.length) %>
+                    <% for (let i=0; i<diskID.length; i++) { %>
+                     <div id="disk-chart<%= diskID[i].id %>"></div>  
+                   <% } %>
                 </div>
             </div>          
         </div>
@@ -110,45 +113,10 @@
     <!-- /#wrapper -->
 
     <script type="text/javascript" src="/js/data.js"></script>
+    <% for (let i=0; i<diskChart.length; i++) { %>
+        <%= diskChart[i] %>   
+    <% } %>
 </body>
 
-<script>
-jQuery(function ($) {
-    var disks = [
-        ["Free", 7168],
-        ["In Use", 3072],
-    ]
 
-    $("#shieldui-chart2").shieldChart({
-        theme: "dark",
-        primaryHeader: {
-            text: "Total Disk Usage (MB)"
-        },
-        seriesSettings: {
-            pie: {
-                enablePointSelection: true,
-                addToLegend: true
-            },
-            tooltipSettings: {
-                customPointText: "{point.collectionAlias}: {point.y}"
-            }
-        },
-        chartLegend: {
-            align: "center",
-            borderRadius: 2,
-            borderWidth: 2,
-            verticalAlign: "top"
-        },
-        exportOptions: {
-            image: false,
-            print: false
-        },
-        dataSeries: [{
-            seriesType: "pie",
-            collectionAlias: "disk",
-            data: disks
-        }]
-    });     
-});
-</script>
 </html>
