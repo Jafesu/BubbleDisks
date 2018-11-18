@@ -1,6 +1,7 @@
 const express = require('express');
 const debug = require('debug')('app:diskRoutes');
 const njds = require('nodejs-disks');
+const diskManager = require('node-diskmanager');
 
 const diskRouter = express.Router();
 

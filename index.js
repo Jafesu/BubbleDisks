@@ -7,12 +7,10 @@ const passport = require('passport');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
-const smartctl = require('node-smartctl');
 
 
 
 const app = express();
-const disks = smartctl();
 const port = process.env.PORT || 8081;
 
 app.use(morgan('tiny'));
@@ -57,8 +55,4 @@ app.get('/', (req, res) => {
 
 app.listen(port, () => {
   debug(`Listening on port ${chalk.white(port)}`);
-  for (let i = 0; i < disks.length; i++){
-    debug(disks[i].Disk);
-    debug(disks[i].Status);
-  }
 });  
