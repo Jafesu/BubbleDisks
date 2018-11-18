@@ -37,7 +37,7 @@ const nav = [
 ];
 const title = 'BubbleDisks'
 
-const diskRouter = require('./src/routes/diskRoutes')(nav, title);
+const diskRouter = require('./src/routes/diskroutes')(nav, title);
 
 app.use('/disks', diskRouter);
 
