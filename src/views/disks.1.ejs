@@ -102,10 +102,10 @@
             <div class="row">
                 <div class="col-lg-12">
                     <h1><%= header %> <small><%= sub %></small></h1>
-                    <% for( let i = 0; i < diskinfo.length; i++){ %>
-                        <h3><%= diskinfo[i].Disk %></h3>
-                        <h3><%= diskinfo[i].Status %></h3>
-                    <%}%>
+                    <% console.log(diskID.length) %>
+                    <% for (let i=0; i<diskID.length; i++) { %>
+                     <div id="disk-chart<%= diskID[i].id %>"></div>  
+                   <% } %>
                 </div>
             </div>          
         </div>
@@ -113,7 +113,9 @@
     <!-- /#wrapper -->
 
     <script type="text/javascript" src="/js/data.js"></script>
-   
+    <% for (let i=0; i<diskChart.length; i++) { %>
+        <%= diskChart[i] %>   
+    <% } %>
 </body>
 
 
