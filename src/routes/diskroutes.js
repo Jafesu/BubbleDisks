@@ -2,7 +2,7 @@ const express = require('express');
 const debug = require('debug')('app:diskRoutes');
 const njds = require('nodejs-disks');
 const { MongoClient } = require('mongodb');
-const smartctl = require('node-smartctl');
+const smartctl = require('../../../node-smartctl');
 
 const diskRouter = express.Router();
 
@@ -11,7 +11,7 @@ function router(nav, title) {
     .get((req, res) => {
       (async function showDisks(){
         try{
-          const diskinfo = smartctl();
+          const diskinfo = await smartctl.getDisks();
           //const disks = await getDisks();
           //const diskChart = await scriptDisks(disks);
           //const diskID = await displayDisks(disks);

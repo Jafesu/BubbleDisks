@@ -27,6 +27,7 @@ app.use('/fonts', express.static(path.join(__dirname, './src/resources/fonts')))
 app.use('/js', express.static(path.join(__dirname, './src/resources/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/bootstrap/dist/js')));
 app.use('/js', express.static(path.join(__dirname, '/node_modules/jquery/dist')));
+app.use('/img', express.static(path.join(__dirname, './src/resources/img')));
 app.set('views', './src/views/');
 app.set('view engine', 'ejs');
 
